@@ -63,9 +63,8 @@ async def scrape_page(page):
 
 async def scrape_catalog(url):
     start_time = time.time()
-    chrome_path = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
-
-    browser = await launch(executablePath=chrome_path, headless=True)
+    # Use default Chrome in container
+    browser = await launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
     page = await browser.newPage()
     
     await page.goto(url)
