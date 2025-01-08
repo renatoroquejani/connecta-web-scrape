@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: connecta-scraper
+    volumes:
+      - .:/app
+    ports:
+      - "8000:80"
+    environment:
+      - MODULE_NAME=app
+      - VARIABLE_NAME=app
+    working_dir: /app
+    command: uvicorn app:app --host 0.0.0.0 --port 80 --reload
